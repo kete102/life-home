@@ -5,7 +5,8 @@ import InfoPanel from "../components/InfoPanel.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 
-const instagramUrl = "https://www.instagram.com/life_home_?stkn=eHg4emk1NW5tOGM%3D";
+const instagramUrl =
+  "https://www.instagram.com/life_home_?stkn=eHg4emk1NW5tOGM%3D";
 const mapsUrl = "https://maps.app.goo.gl/aFwUA3xvGxwPZXBT7";
 const churchUrl = "https://icepuertollano.es/";
 ---
@@ -49,48 +50,66 @@ const churchUrl = "https://icepuertollano.es/";
           const toggle = document.querySelector("#theme-toggle");
           if (toggle) {
             toggle.setAttribute("aria-pressed", String(isDark));
-            toggle.setAttribute("aria-label", isDark ? "Activar modo claro" : "Activar modo oscuro");
+            toggle.setAttribute(
+              "aria-label",
+              isDark ? "Activar modo claro" : "Activar modo oscuro",
+            );
           }
 
           const themeColor = document.querySelector('meta[name="theme-color"]');
           const colorToken = isDark ? "--color-zinc-950" : "--color-paper";
-          const color = getComputedStyle(root).getPropertyValue(colorToken).trim();
+          const color = getComputedStyle(root)
+            .getPropertyValue(colorToken)
+            .trim();
           if (themeColor && color) themeColor.setAttribute("content", color);
         };
 
-        const initialTheme = storedTheme === "dark" || storedTheme === "light"
-          ? storedTheme
-          : systemTheme.matches ? "dark" : "light";
+        const initialTheme =
+          storedTheme === "dark" || storedTheme === "light"
+            ? storedTheme
+            : systemTheme.matches
+              ? "dark"
+              : "light";
 
         applyTheme(initialTheme);
 
         document.addEventListener("DOMContentLoaded", () => {
           applyTheme(root.classList.contains("dark") ? "dark" : "light");
 
-          document.querySelector("#theme-toggle")?.addEventListener("click", () => {
-            const theme = root.classList.contains("dark") ? "light" : "dark";
-            try {
-              localStorage.setItem(storageKey, theme);
-            } catch {}
+          document
+            .querySelector("#theme-toggle")
+            ?.addEventListener("click", () => {
+              const theme = root.classList.contains("dark") ? "light" : "dark";
+              try {
+                localStorage.setItem(storageKey, theme);
+              } catch {
+                // Keep theme switching functional when storage is unavailable.
+              }
 
-            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-            if (!("startViewTransition" in document) || reducedMotion) {
-              applyTheme(theme);
-              return;
-            }
+              const reducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+              ).matches;
+              if (!("startViewTransition" in document) || reducedMotion) {
+                applyTheme(theme);
+                return;
+              }
 
-            root.dataset.themeTransition = theme;
-            const transition = document.startViewTransition(() => applyTheme(theme));
-            transition.finished.finally(() => {
-              delete root.dataset.themeTransition;
+              root.dataset.themeTransition = theme;
+              const transition = document.startViewTransition(() =>
+                applyTheme(theme),
+              );
+              transition.finished.finally(() => {
+                delete root.dataset.themeTransition;
+              });
             });
-          });
         });
 
         systemTheme.addEventListener("change", (event) => {
           try {
             if (localStorage.getItem(storageKey)) return;
-          } catch {}
+          } catch {
+            // Fall back to the system preference when storage is unavailable.
+          }
           applyTheme(event.matches ? "dark" : "light");
         });
       })();
@@ -108,7 +127,10 @@ const churchUrl = "https://icepuertollano.es/";
       <SiteHeader churchUrl={churchUrl} />
 
       <main class="grid w-full place-items-start justify-items-center px-[clamp(1.25rem,5vw,5rem)] py-[clamp(3rem,7vh,5.5rem)] max-[480px]:py-12">
-        <section class="grid w-full max-w-320 animate-arrive grid-cols-[minmax(0,1.15fr)_minmax(19rem,0.85fr)] items-start gap-[clamp(4rem,10vw,10rem)] motion-reduce:animate-none max-[800px]:grid-cols-1 max-[800px]:gap-14" aria-labelledby="page-title">
+        <section
+          class="grid w-full max-w-320 animate-arrive grid-cols-[minmax(0,1.15fr)_minmax(19rem,0.85fr)] items-start gap-[clamp(4rem,10vw,10rem)] motion-reduce:animate-none max-[800px]:grid-cols-1 max-[800px]:gap-14"
+          aria-labelledby="page-title"
+        >
           <HeroIntro />
           <InfoPanel instagramUrl={instagramUrl} mapsUrl={mapsUrl} />
         </section>
