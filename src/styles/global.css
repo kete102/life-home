@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  --color-ink: oklch(22.48% 0.0337 326.63);
+  --color-ink-soft: oklch(51.09% 0.0215 331.38);
+  --color-paper: oklch(95.45% 0.0108 95.17);
+  --color-acid: oklch(93.01% 0.2176 124.38);
+  --color-light: oklch(100% 0 0);
+  --color-instagram-gold: oklch(82.45% 0.1474 77.57);
+  --color-instagram-magenta: oklch(56.3% 0.1907 350.4);
+  --color-haze-lavender: oklch(86% 0.07 315);
+  --color-haze-peach: oklch(90% 0.08 55);
+
+  --ease-fluid: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-arrive: arrive 700ms var(--ease-fluid) both;
+  --background-image-instagram:
+    radial-gradient(circle at 8% 120%, oklch(82.45% 0.1474 77.57 / 22%), transparent 38%),
+    radial-gradient(circle at 95% -20%, oklch(56.3% 0.1907 350.4 / 25%), transparent 42%);
+  --background-image-instagram-hover:
+    radial-gradient(circle at 12% 110%, oklch(82.45% 0.1474 77.57 / 72%), transparent 44%),
+    radial-gradient(circle at 78% 18%, oklch(56.3% 0.1907 350.4 / 68%), transparent 52%),
+    linear-gradient(110deg, oklch(54% 0.18 350), oklch(30% 0.09 326.63));
+  --background-image-paper-texture:
+    radial-gradient(circle at 8% 18%, oklch(86% 0.07 315 / 38%), transparent 31rem),
+    radial-gradient(circle at 88% 72%, oklch(90% 0.08 55 / 42%), transparent 34rem),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
+
+  @keyframes arrive {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+  }
+}
