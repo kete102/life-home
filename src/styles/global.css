@@ -1,5 +1,29 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+:root.dark {
+  color-scheme: dark;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+:root[data-theme-transition]::view-transition-new(root) {
+  animation: theme-wipe 1400ms cubic-bezier(0.45, 0, 0.2, 1) both;
+}
+
 @theme {
   --font-sans: "DM Sans", system-ui, sans-serif;
 
@@ -26,11 +50,30 @@
     radial-gradient(circle at 8% 18%, oklch(86% 0.07 315 / 38%), transparent 31rem),
     radial-gradient(circle at 88% 72%, oklch(90% 0.08 55 / 42%), transparent 34rem),
     url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
+  --background-image-night-glow:
+    radial-gradient(ellipse at 0% 0%, color-mix(in oklab, var(--color-violet-700) 12%, transparent), transparent 52rem),
+    radial-gradient(ellipse at 100% 100%, color-mix(in oklab, var(--color-amber-500) 7%, transparent), transparent 56rem);
 
   @keyframes arrive {
     from {
       opacity: 0;
       transform: translateY(18px);
     }
+  }
+
+  @keyframes theme-wipe {
+    from {
+      clip-path: polygon(0 0, 0 0, 0 0);
+    }
+
+    to {
+      clip-path: polygon(0 0, 300% 0, 0 300%);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme-transition]::view-transition-new(root) {
+    animation: none;
   }
 }

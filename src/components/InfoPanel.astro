@@ -27,19 +27,19 @@ const { instagramUrl, mapsUrl } = Astro.props;
     </a>
   </nav>
 
-  <div class="flex items-end justify-between gap-4 border-t border-ink/20 px-0 pt-10 pb-12 max-[480px]:pt-7 max-[480px]:pb-9" aria-label="Nos reunimos todos los viernes a las 19:45">
+  <div class="flex items-end justify-between gap-4 border-t border-ink/20 px-0 pt-10 pb-12 dark:border-zinc-100/20 max-[480px]:pt-7 max-[480px]:pb-9" aria-label="Nos reunimos todos los viernes a las 19:45">
     <div>
-      <span class="mb-1.5 block text-[0.68rem] font-medium tracking-[0.12em] text-ink-soft uppercase">Cada semana</span>
+      <span class="mb-1.5 block text-[0.68rem] font-medium tracking-[0.12em] text-ink-soft uppercase dark:text-zinc-400">Cada semana</span>
       <strong class="text-[clamp(2rem,4vw,3.5rem)] font-medium tracking-[-0.06em]">Viernes</strong>
     </div>
     <time class="text-[clamp(2rem,4vw,3.5rem)] font-light tracking-[-0.07em]" datetime="19:45">19:45</time>
   </div>
 
-  <a class="group flex origin-center items-center justify-between gap-6 border-t border-ink/20 py-[1.4rem] text-ink no-underline transition-[transform,opacity] duration-150 active:scale-[0.985] active:opacity-65 focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-acid motion-reduce:transition-none" href={mapsUrl} target="_blank" rel="noreferrer">
+  <a class="group flex origin-center items-center justify-between gap-6 border-t border-ink/20 py-[1.4rem] text-ink no-underline transition-[transform,opacity] duration-150 active:scale-[0.985] active:opacity-65 focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-acid motion-reduce:transition-none dark:border-zinc-100/20 dark:text-zinc-100" href={mapsUrl} target="_blank" rel="noreferrer">
     <span>
-      <small class="mb-[0.45rem] block text-[0.65rem] font-semibold tracking-[0.12em] text-ink-soft uppercase">Dónde encontrarnos</small>
+      <small class="mb-[0.45rem] block text-[0.65rem] font-semibold tracking-[0.12em] text-ink-soft uppercase dark:text-zinc-400">Dónde encontrarnos</small>
       <strong class="mb-0.5 block text-[1.1rem] font-medium">C. Ancha, 21</strong>
-      <span class="block text-[0.85rem] text-ink-soft">13500 Puertollano, Ciudad Real</span>
+      <span class="block text-[0.85rem] text-ink-soft dark:text-zinc-400">13500 Puertollano, Ciudad Real</span>
     </span>
     <svg class="w-7 shrink-0 stroke-current stroke-[1.5] transition-transform duration-180 [stroke-linecap:round] [stroke-linejoin:round] group-hover:-translate-y-0.75 motion-reduce:transition-none" viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <path d="M12 21s7-6.1 7-12A7 7 0 0 0 5 9c0 5.9 7 12 7 12Z" />
