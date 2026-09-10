@@ -19,7 +19,7 @@ const churchUrl = "https://icepuertollano.es/";
       name="description"
       content="Life Home: un lugar para encontrarnos, crecer y vivir la fe juntos. Nos vemos cada viernes a las 19:45."
     />
-    <meta name="theme-color" content="oklch(22.48% 0.0337 326.63)" />
+    <meta name="theme-color" content="oklch(95.45% 0.0108 95.17)" />
     <meta property="og:title" content="Life Home" />
     <meta
       property="og:description"
@@ -27,6 +27,74 @@ const churchUrl = "https://icepuertollano.es/";
     />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      (() => {
+        const storageKey = "theme";
+        const root = document.documentElement;
+        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+
+        const storedTheme = (() => {
+          try {
+            return localStorage.getItem(storageKey);
+          } catch {
+            return null;
+          }
+        })();
+
+        const applyTheme = (theme) => {
+          const isDark = theme === "dark";
+          root.classList.toggle("dark", isDark);
+          root.style.colorScheme = theme;
+
+          const toggle = document.querySelector("#theme-toggle");
+          if (toggle) {
+            toggle.setAttribute("aria-pressed", String(isDark));
+            toggle.setAttribute("aria-label", isDark ? "Activar modo claro" : "Activar modo oscuro");
+          }
+
+          const themeColor = document.querySelector('meta[name="theme-color"]');
+          const colorToken = isDark ? "--color-zinc-950" : "--color-paper";
+          const color = getComputedStyle(root).getPropertyValue(colorToken).trim();
+          if (themeColor && color) themeColor.setAttribute("content", color);
+        };
+
+        const initialTheme = storedTheme === "dark" || storedTheme === "light"
+          ? storedTheme
+          : systemTheme.matches ? "dark" : "light";
+
+        applyTheme(initialTheme);
+
+        document.addEventListener("DOMContentLoaded", () => {
+          applyTheme(root.classList.contains("dark") ? "dark" : "light");
+
+          document.querySelector("#theme-toggle")?.addEventListener("click", () => {
+            const theme = root.classList.contains("dark") ? "light" : "dark";
+            try {
+              localStorage.setItem(storageKey, theme);
+            } catch {}
+
+            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            if (!("startViewTransition" in document) || reducedMotion) {
+              applyTheme(theme);
+              return;
+            }
+
+            root.dataset.themeTransition = theme;
+            const transition = document.startViewTransition(() => applyTheme(theme));
+            transition.finished.finally(() => {
+              delete root.dataset.themeTransition;
+            });
+          });
+        });
+
+        systemTheme.addEventListener("change", (event) => {
+          try {
+            if (localStorage.getItem(storageKey)) return;
+          } catch {}
+          applyTheme(event.matches ? "dark" : "light");
+        });
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -35,8 +103,8 @@ const churchUrl = "https://icepuertollano.es/";
     />
     <title>Life Home | Jóvenes, fe y comunidad</title>
   </head>
-  <body class="m-0 min-h-screen min-w-80 bg-paper font-sans text-ink antialiased [font-synthesis:none]">
-    <div class="grid min-h-screen grid-rows-[auto_1fr_auto] overflow-x-clip bg-paper bg-paper-texture">
+  <body class="m-0 min-h-screen min-w-80 bg-paper font-sans text-ink antialiased [font-synthesis:none] dark:bg-zinc-950 dark:text-zinc-100">
+    <div class="grid min-h-screen grid-rows-[auto_1fr_auto] overflow-x-clip bg-paper bg-paper-texture dark:bg-zinc-950 dark:bg-night-glow">
       <SiteHeader churchUrl={churchUrl} />
 
       <main class="grid w-full place-items-start justify-items-center px-[clamp(1.25rem,5vw,5rem)] py-[clamp(3rem,7vh,5.5rem)] max-[480px]:py-12">

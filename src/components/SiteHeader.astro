@@ -6,20 +6,37 @@ interface Props {
 const { churchUrl } = Astro.props;
 ---
 
-<header class="flex h-30 items-center justify-between bg-ink px-[clamp(1.25rem,5vw,5rem)] py-5 text-light max-[800px]:h-26">
+<header class="flex h-30 items-center justify-between border-b border-ink/10 bg-paper px-[clamp(1.25rem,5vw,5rem)] py-5 text-ink dark:border-zinc-100/10 dark:bg-zinc-950 dark:text-zinc-100 max-[800px]:h-26">
   <a class="block w-[clamp(7.5rem,11vw,10rem)] leading-none transition-opacity duration-150 active:opacity-70 motion-reduce:transition-none" href="/" aria-label="Life Home, inicio">
-    <img class="block h-auto w-full invert" src="/LifeHome-Negro.svg" alt="Life Home" width="2558" height="922" />
+    <img class="block h-auto w-full dark:invert" src="/LifeHome-Negro.svg" alt="Life Home" width="2558" height="922" />
   </a>
-  <a
-    class="group inline-flex origin-right items-center gap-2.5 text-[0.72rem] font-semibold tracking-[0.14em] text-light/62 uppercase no-underline transition-[color,transform,opacity] duration-180 hover:text-light/92 active:scale-[0.98] active:text-light active:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-[5px] focus-visible:outline-acid motion-reduce:transition-none max-[800px]:hidden"
-    href={churchUrl}
-    target="_blank"
-    rel="noreferrer"
-  >
-    <span>Iglesia Evangélica de Puertollano</span>
-    <svg class="size-4 shrink-0 stroke-current stroke-[1.5] [stroke-linecap:round] [stroke-linejoin:round]" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <rect x="3.5" y="3.5" width="17" height="17" rx="2" />
-      <path class="transition-transform duration-180 ease-fluid group-hover:translate-x-[1.25px] group-hover:translate-y-[-1.25px] group-focus-visible:translate-x-[1.25px] group-focus-visible:translate-y-[-1.25px] motion-reduce:transition-none" d="M9 15 15 9M10 9h5v5" />
-    </svg>
-  </a>
+  <div class="flex items-center gap-[clamp(1.25rem,3vw,3rem)]">
+    <a
+      class="group inline-flex origin-right items-center gap-2.5 text-[0.72rem] font-semibold tracking-[0.14em] text-ink/62 uppercase no-underline transition-[color,transform,opacity] duration-180 hover:text-ink/92 active:scale-[0.98] active:text-ink active:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-[5px] focus-visible:outline-acid motion-reduce:transition-none dark:text-zinc-100/62 dark:hover:text-zinc-100/92 dark:active:text-zinc-100 max-[800px]:hidden"
+      href={churchUrl}
+      target="_blank"
+      rel="noreferrer"
+    >
+      <span>Iglesia Evangélica de Puertollano</span>
+      <svg class="size-4 shrink-0 stroke-current stroke-[1.5] [stroke-linecap:round] [stroke-linejoin:round]" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="2" />
+        <path class="transition-transform duration-180 ease-fluid group-hover:translate-x-[1.25px] group-hover:translate-y-[-1.25px] group-focus-visible:translate-x-[1.25px] group-focus-visible:translate-y-[-1.25px] motion-reduce:transition-none" d="M9 15 15 9M10 9h5v5" />
+      </svg>
+    </a>
+    <button
+      id="theme-toggle"
+      class="group relative grid size-10 cursor-pointer place-items-center overflow-hidden border border-ink/25 bg-transparent text-ink transition-[border-color,transform,opacity] duration-300 ease-fluid hover:border-ink/70 active:scale-90 active:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-acid motion-reduce:transition-none dark:border-zinc-100/25 dark:text-zinc-100 dark:hover:border-zinc-100/70"
+      type="button"
+      aria-label="Activar modo oscuro"
+      aria-pressed="false"
+    >
+      <svg class="size-4.5 fill-none stroke-current stroke-[1.5] transition-[transform,opacity] duration-500 ease-fluid group-hover:scale-110 dark:translate-y-6 dark:scale-75 dark:opacity-0 motion-reduce:transition-none [stroke-linecap:round] [stroke-linejoin:round]" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="3.5" />
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41" />
+      </svg>
+      <svg class="absolute size-4.5 -translate-y-6 scale-75 fill-none stroke-current stroke-[1.5] opacity-0 transition-[transform,opacity] duration-500 ease-fluid dark:translate-y-0 dark:scale-100 dark:opacity-100 dark:group-hover:scale-110 motion-reduce:transition-none [stroke-linecap:round] [stroke-linejoin:round]" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.5 15.2A8.5 8.5 0 0 1 8.8 3.5a8.5 8.5 0 1 0 11.7 11.7Z" />
+      </svg>
+    </button>
+  </div>
 </header>
