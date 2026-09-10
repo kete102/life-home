@@ -1,0 +1,52 @@
+---
+import "../styles/global.css";
+import HeroIntro from "../components/HeroIntro.astro";
+import InfoPanel from "../components/InfoPanel.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+
+const instagramUrl = "https://www.instagram.com/life_home_?stkn=eHg4emk1NW5tOGM%3D";
+const mapsUrl = "https://maps.app.goo.gl/aFwUA3xvGxwPZXBT7";
+const churchUrl = "https://icepuertollano.es/";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="description"
+      content="Life Home: un lugar para encontrarnos, crecer y vivir la fe juntos. Nos vemos cada viernes a las 19:45."
+    />
+    <meta name="theme-color" content="oklch(22.48% 0.0337 326.63)" />
+    <meta property="og:title" content="Life Home" />
+    <meta
+      property="og:description"
+      content="Un lugar para encontrarnos, crecer y vivir la fe juntos. Viernes a las 19:45."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Life Home | Jóvenes, fe y comunidad</title>
+  </head>
+  <body class="m-0 min-h-screen min-w-80 bg-paper font-sans text-ink antialiased [font-synthesis:none]">
+    <div class="grid min-h-screen grid-rows-[auto_1fr_auto] overflow-x-clip bg-paper bg-paper-texture">
+      <SiteHeader churchUrl={churchUrl} />
+
+      <main class="grid w-full place-items-start justify-items-center px-[clamp(1.25rem,5vw,5rem)] py-[clamp(3rem,7vh,5.5rem)] max-[480px]:py-12">
+        <section class="grid w-full max-w-320 animate-arrive grid-cols-[minmax(0,1.15fr)_minmax(19rem,0.85fr)] items-start gap-[clamp(4rem,10vw,10rem)] motion-reduce:animate-none max-[800px]:grid-cols-1 max-[800px]:gap-14" aria-labelledby="page-title">
+          <HeroIntro />
+          <InfoPanel instagramUrl={instagramUrl} mapsUrl={mapsUrl} />
+        </section>
+      </main>
+
+      <SiteFooter />
+    </div>
+  </body>
+</html>

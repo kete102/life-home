@@ -1,0 +1,25 @@
+---
+interface Props {
+  churchUrl: string;
+}
+
+const { churchUrl } = Astro.props;
+---
+
+<header class="flex h-30 items-center justify-between bg-ink px-[clamp(1.25rem,5vw,5rem)] py-5 text-light max-[800px]:h-26">
+  <a class="block w-[clamp(7.5rem,11vw,10rem)] leading-none transition-opacity duration-150 active:opacity-70 motion-reduce:transition-none" href="/" aria-label="Life Home, inicio">
+    <img class="block h-auto w-full invert" src="/LifeHome-Negro.svg" alt="Life Home" width="2558" height="922" />
+  </a>
+  <a
+    class="group inline-flex origin-right items-center gap-2.5 text-[0.72rem] font-semibold tracking-[0.14em] text-light/62 uppercase no-underline transition-[color,transform,opacity] duration-180 hover:text-light/92 active:scale-[0.98] active:text-light active:opacity-80 focus-visible:outline-2 focus-visible:outline-offset-[5px] focus-visible:outline-acid motion-reduce:transition-none max-[800px]:hidden"
+    href={churchUrl}
+    target="_blank"
+    rel="noreferrer"
+  >
+    <span>Iglesia Evangélica de Puertollano</span>
+    <svg class="size-4 shrink-0 stroke-current stroke-[1.5] [stroke-linecap:round] [stroke-linejoin:round]" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3.5" y="3.5" width="17" height="17" rx="2" />
+      <path class="transition-transform duration-180 ease-fluid group-hover:translate-x-[1.25px] group-hover:translate-y-[-1.25px] group-focus-visible:translate-x-[1.25px] group-focus-visible:translate-y-[-1.25px] motion-reduce:transition-none" d="M9 15 15 9M10 9h5v5" />
+    </svg>
+  </a>
+</header>
