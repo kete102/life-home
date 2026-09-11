@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "life-home-www-redirect",
+  "main": "src/workers/www-redirect.ts",
+  "compatibility_date": "2026-09-11",
+  "routes": [
+    {
+      "pattern": "www.lifehomepuertollano.es",
+      "custom_domain": true,
+    },
+  ],
+}
