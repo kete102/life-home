@@ -8,6 +8,27 @@ import SiteHeader from "../components/SiteHeader.astro";
 const instagramUrl = "https://www.instagram.com/life_home_/";
 const mapsUrl = "https://maps.app.goo.gl/aFwUA3xvGxwPZXBT7";
 const churchUrl = "https://icepuertollano.es/";
+const title = "Life Home | Jóvenes, fe y comunidad";
+const description =
+  "Life Home: un lugar para encontrarnos, crecer y vivir la fe juntos. Nos vemos cada viernes a las 19:45 en Puertollano.";
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const socialImageUrl = new URL("/og-image.png", Astro.site);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Life Home",
+  url: canonicalUrl,
+  logo: new URL("/LifeHome-Negro.svg", Astro.site),
+  sameAs: [instagramUrl],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "C. Ancha, 21",
+    postalCode: "13500",
+    addressLocality: "Puertollano",
+    addressRegion: "Ciudad Real",
+    addressCountry: "ES",
+  },
+};
 ---
 
 <!doctype html>
@@ -15,17 +36,29 @@ const churchUrl = "https://icepuertollano.es/";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta
-      name="description"
-      content="Life Home: un lugar para encontrarnos, crecer y vivir la fe juntos. Nos vemos cada viernes a las 19:45."
-    />
+    <meta name="description" content={description} />
     <meta name="theme-color" content="oklch(95.45% 0.0108 95.17)" />
-    <meta property="og:title" content="Life Home" />
-    <meta
-      property="og:description"
-      content="Un lugar para encontrarnos, crecer y vivir la fe juntos. Viernes a las 19:45."
-    />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Life Home" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Life Home: una casa para crecer" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content="Life Home: una casa para crecer" />
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(structuredData)}
+    ></script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline>
       (() => {
@@ -119,7 +152,7 @@ const churchUrl = "https://icepuertollano.es/";
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <title>Life Home | Jóvenes, fe y comunidad</title>
+    <title>{title}</title>
   </head>
   <body class="m-0 min-w-80 bg-paper font-sans text-ink antialiased [font-synthesis:none] dark:bg-zinc-950 dark:text-zinc-100">
     <div class="grid min-h-dvh grid-rows-[auto_1fr_auto] overflow-x-clip bg-paper bg-paper-texture dark:bg-zinc-950 dark:bg-night-glow">
